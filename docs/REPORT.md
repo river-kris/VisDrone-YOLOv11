@@ -7,11 +7,11 @@
 > `results/figures/`, tables from `results/tables/`.
 
 ## 0. Overview
-- **Team:** <name(s)>
+- **Student ID:** 29747219
 - **Primary model:** YOLOv11 (`yolo11s`, 9.4M parameters, 21.7 GFLOPs at 640)
 - **Dataset:** VisDrone-DET (10 classes)
 - **Compute:** Google Colab T4 (baseline) + RTX 3060 laptop, 6 GB (pipeline dev, light runs)
-- **Repo:** <https://github.com/eijikuinbii/CMPE401-YOLOv11>
+- **Repo:** <https://github.com/river-kris/CMPE401-YOLOv11>
 
 ### Dataset at a glance
 Statistics of the converted YOLO labels (ignored regions and "others" removed):
@@ -68,8 +68,15 @@ Per-class mAP@50-95:
 
 Inference speed on the T4: ~7.8 ms/img model forward pass (+ ~3 ms pre/post-processing).
 
-Ultralytics' own plots for this run (PR curve, confusion matrix, prediction samples)
-are in `results/runs/baseline_s_640/`, which is gitignored; reproduce with the command above.
+Ultralytics' own evaluation plots for this run (val split):
+
+| PR curve | Confusion matrix (normalized) |
+|---|---|
+| ![PR curve](../results/figures/eval/baseline_s_640_pr_val.png) | ![Confusion matrix](../results/figures/eval/baseline_s_640_confusion_val.png) |
+
+Sample predictions: [`baseline_s_640_pred_val.jpg`](../results/figures/eval/baseline_s_640_pred_val.jpg).
+The same three plots for every run are in [`results/figures/eval/`](../results/figures/eval/);
+the full Ultralytics output (`results/runs/`) is gitignored and is reproduced by the command above.
 
 ---
 
@@ -412,8 +419,9 @@ largest is bus (0.372 → 0.400, +0.028). On test-dev every class is within ±0.
 | awning-tricycle predicted as tricycle | 0.21 | 0.16 |
 | car correct | 0.70 | 0.71 |
 
-Files: `results/runs/{baseline_s_640,compare_v8s_640}/eval_val/confusion_matrix_normalized.png`
-(gitignored, reproduce with the commands above).
+| yolo11s | yolov8s |
+|---|---|
+| ![yolo11s confusion matrix](../results/figures/eval/baseline_s_640_confusion_val.png) | ![yolov8s confusion matrix](../results/figures/eval/compare_v8s_640_confusion_val.png) |
 
 ### Discussion
 - **Accuracy: a tie.** YOLOv8s is +0.004 on val but −0.002 on test-dev. Both

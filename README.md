@@ -9,7 +9,7 @@ training, loss/fitting analysis, controlled experiments, an iterative
 improvement cycle, and an optional multi-version YOLO comparison.
 
 > **Status:** complete. All required parts (I–IV) and the optional Part V are done.
-> Full write-up in [`docs/REPORT.md`](docs/REPORT.md). Full write-up in [`docs/REPORT.md`](docs/REPORT.md).
+> Full write-up in [`docs/REPORT.md`](docs/REPORT.md).
 
 ---
 
@@ -110,7 +110,7 @@ scripts/
   plot_curves.py             # train-vs-val loss + mAP curves (Part II)
   summarize_runs.py          # comparison tables (Parts III/IV/V)
 notebooks/colab_train.ipynb  # heavy runs on Colab
-results/                     # runs/ (gitignored), figures/, tables/
+results/                     # runs/ (gitignored), figures/ (+ figures/eval/ per-run plots), tables/
 docs/REPORT.md               # graded technical write-up (Parts I–V)
 ```
 
@@ -153,6 +153,16 @@ docs/REPORT.md               # graded technical write-up (Parts I–V)
 | yolov8s | 0.2291 | 0.3943 | 0.1839 | 11.1M | 28.7 | 3.92 h | ~7 ms |
 
 ![Loss: yolo11s vs yolov8s](results/figures/loss_baseline_s_640_vs_compare_v8s_640.png)
+
+Normalized val confusion matrices (yolo11s left, yolov8s right): both models miss 34–41% of
+pedestrians, people and bicycles, and label vans as cars 41–43% of the time.
+
+| yolo11s | yolov8s |
+|---|---|
+| ![yolo11s confusion matrix](results/figures/eval/baseline_s_640_confusion_val.png) | ![yolov8s confusion matrix](results/figures/eval/compare_v8s_640_confusion_val.png) |
+
+PR curves, confusion matrices and sample predictions for every run:
+[`results/figures/eval/`](results/figures/eval/).
 
 ### All runs
 | Run | Part | Change vs baseline | val mAP@50-95 | test mAP@50-95 |
