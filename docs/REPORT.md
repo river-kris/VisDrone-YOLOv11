@@ -507,3 +507,7 @@ not run within the free-Colab GPU budget.
   same val mAP@50-95 (0.2248 vs 0.2247).
 - Limitation: one seed per configuration. Differences smaller than ~0.005 mAP should
   be treated as within run-to-run noise.
+
+## Statement on AI use
+
+Claude Opus 5.5 was used for the implementation of training code, project setup and assistance.
